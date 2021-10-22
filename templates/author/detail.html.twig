@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} AUTHOR DETAIL {% endblock %}
+
+{% block body %}
+
+	<nav class="container">
+        <div class="grid wide">
+            <div class="row sm-gutter container__shorter">
+                
+                <div class="col l-2">
+                    <div class="container__category">
+                        <div class="container__category-header">
+                            <i class="container__category-header-logo fas fa-list"></i>
+                            <span class="container__category-header-item">List Category</span>
+                        </div>
+                        <ul class="container__category-list">
+                            <li class="container__category-list-item container__category-list-arrow">
+                                <a href="" class="container__category-item-link">ALL CATEGORY</a>
+                            </li>
+                            <li class="container__category-list-item">
+                                <a href="" class="container__category-item-link">💙 BÁN CHẠY</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col l-10">
+                    <div class="home__filter hide-on-tablet-mobile">
+                        <span class="home__filter-lable">Sorted by...</span>
+						 {% if is_granted('ROLE_ADMIN') %}
+                        	<a class="btn btn--primary home__filter-button" href="{{ path('author_add')}}">ADD</a>
+						{% endif %}
+						<a class="btn home__filter-button" href="{{ path('homepage')}}">Home</a>
+						<a class="btn btn--primary home__filter-button" href="{{ path('author_index')}}">Author List</a>
+						<a class="btn btn--primary home__filter-button" href="{{ path('book_index')}}">Book List</a>
+						 {% if is_granted('ROLE_ADMIN') %}
+							<a class="btn home__filter-button" style="color: black" href="{{ path('author_edit', {'id': author.id}) }}">EDIT</a>
+							<a class="btn home__filter-button" style="color: black" href="{{ path('author_delete', {'id': author.id}) }}" onclick="return confirm('Are you sure to delete?')"> DELETE </a>
+						{% endif %}
+                    </div>
+
+                    <div class="home__product">
+                        <div class="row sm-gutter ">
+							<div class="product_info-img">
+								<img src="{{asset('images/author/'~author.image)}}"
+								alt="avatar" width="250" height="250" style="border-radius: 50%">
+							</div>
+							<div class="product_info-item">
+								<div class="product-list_info bold">
+									<span>ID:</span><br><br>
+									<span>Name:</span><br><br>
+									<span>Birthday:</span><br><br>
+									<span>Nationality:</span><br><br>
+									<span>Book:</span>
+								</div>
+								<div class="product-list_info inherit">
+									<span>{{author.id}}</span><br><br>
+									<span>{{author.name}}</span><br><br>
+									<span>{{author.birthday|date('d/m/Y')}}</span><br><br>
+									<span>{{author.nationality}}</span><br><br>
+									<span>
+										{% for b in author.books %}
+											<a href="{{ path('book_detail', {'id': b.id }) }}" style="text-decoration: none;">
+												{{ b.title }}
+											</a>
+											<br>
+										{% endfor %}
+									</span>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+{% endblock %}

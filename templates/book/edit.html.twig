@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} UPDATE BOOK {% endblock %}
+
+{% block body %}
+
+	<div class="auth-form">
+
+		<h3 class="text-center mt-5">UPDATE NEW BOOK</h3>
+      {{ form_start(form) }}
+         <div class="auth-form__input">
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title,
+               {
+                  'attr': { 'class' : 'form-control'}
+               })
+            }}
+         </div>
+         <div class="auth-form__input">
+            {{ form_label(form.publisher) }}
+            {{ form_widget(form.publisher,
+               {
+                  'attr': { 'class' : 'form-control'}
+               })
+            }}
+         </div>
+         <div class="auth-form__input">
+            {{ form_label(form.price) }}
+            {{ form_widget(form.price,
+               {
+                  'attr': { 'class' : 'form-control'}
+               })
+            }}
+         </div>
+         <div class="auth-form__input">
+            {{ form_label(form.quantity) }}
+            {{ form_widget(form.quantity,
+               {
+                  'attr': { 'class' : 'form-control'}
+               })
+            }}
+         </div>
+         <div class="auth-form__input">
+            {{ form_label(form.image) }}
+            {{ form_widget(form.image,
+               {
+                  'attr': { 'class' : 'form-control'}
+               })
+            }}
+         </div>
+         <div class="auth-form__input">
+            {{ form_label(form.author) }}
+            {{ form_widget(form.author,
+               {
+                  'attr': { 'class' : 'form-control'}
+               })
+            }}
+         </div>
+         <div class="auth-form__controls">
+            <button class="btn btn--primary" type="submit"UPDATE</button>
+         </div>
+      {{ form_end(form) }}
+	</div>
+	
+{% endblock %}

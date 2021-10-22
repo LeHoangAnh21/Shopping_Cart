@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Book management {% endblock %}
+
+{% block body %}
+
+    <nav class="container">
+        <div class="grid wide">
+            <div class="row sm-gutter container__shorter">
+                
+                <div class="col l-2">
+                    <div class="container__category">
+                        <div class="container__category-header">
+                            <i class="container__category-header-logo fas fa-list"></i>
+                            <span class="container__category-header-item">List Category</span>
+                        </div>
+                        <ul class="container__category-list">
+                            <li class="container__category-list-item container__category-list-arrow">
+                                <a href="" class="container__category-item-link">ALL CATEGORY</a>
+                            </li>
+                            <li class="container__category-list-item">
+                                <a href="" class="container__category-item-link">💙 BEST SELLER</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col l-10">
+                    <div class="home__filter hide-on-tablet-mobile">
+                        <span class="home__filter-lable">Sorted by...</span>
+                         {% if is_granted('ROLE_ADMIN') %}
+                            <a class="btn btn--primary home__filter-button" href="{{ path('book_add')}}">ADD</a>
+                        {% endif %}
+						<a class="btn btn--primary home__filter-button" href="{{ path('author_index')}}">Author List</a>
+                        <button class="btn home__filter-button">High value</button>
+                        <button class="btn home__filter-button">Low value</button>
+                        <a class="btn home__filter-button" href="{{ path('homepage')}}">Home</a>
+                    </div>
+
+                    <div class="home__product">
+                        <div class="row sm-gutter">
+                            <!-- item -->
+                            {% for book in books %}
+                                <div class="col l-2-4">
+                                    <a class="home__product-item" href="{{ path('book_detail', {'id': book.id}) }}">
+                                        <div class="home__product-item-img" style="background-image: url({{asset('images/book/'~book.image)}}">
+                                            
+                                        </div>
+                                        <div class="home__product-item-info">
+                                            <div class="home__product-item-name">
+                                                {{book.title}}
+                                            </div>
+
+                                            <div class="home__product_item-voucher">
+                                                <span class="home__product_voucher-first">50% Sale</span>
+                                                <span class="home__product_voucher-second">Buy with great deal</span>
+                                            </div>
+
+                                            <div class="home__product-item-price">
+                                                <div class="home__product-rating-like">
+                                                    <i class="fas fa-heart" style="color: red"></i>
+                                                </div>
+                                                <div class="home__product-item-freeship">
+                                                    <img src="../image/pixlr-bg-result.png" alt="">
+                                                </div>
+                                            </div>	
+                                        </div>
+
+                                        <div class="home__product-favorite">
+                                            <span class="home__product-favorite-love">Favorite</span>
+                                        </div>
+
+                                        <div class="home__product-sale">
+                                            <span class="home__product-sale-percent">50%</span>
+                                            <span class="home__product-sale-off">SALE</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+{% endblock %}

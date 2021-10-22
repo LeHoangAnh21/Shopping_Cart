@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} UPDATE AUTHOR {% endblock %}
+
+{% block body %}
+
+	<div class="auth-form">
+
+		<h3 class="text-center mt-5">UPDATE AUTHOR</h3>
+      	{{ form_start(form) }}
+         <div class="auth-form__input">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name,
+               {
+                  'attr': { 'class' : 'form-control'}
+               })
+            }}
+         </div>
+         <div class="auth-form__input">
+            {{ form_label(form.birthday) }}
+            {{ form_widget(form.birthday,
+               {
+                  'attr': { 'class' : 'form-control'}
+               })
+            }}
+         </div>
+         <div class="auth-form__input">
+            {{ form_label(form.nationality) }}
+            {{ form_widget(form.nationality,
+               {
+                  'attr': { 'class' : 'form-control'}
+               })
+            }}
+         </div>
+         <div class="auth-form__input">
+            {{ form_label(form.image) }}
+            {{ form_widget(form.image,
+               {
+                  'attr': { 'class' : 'form-control'}
+               })
+            }}
+         </div>
+         <div class="auth-form__controls">
+            <button class="btn btn--primary" type="submit">UPDATE</button>
+         </div>
+      {{ form_end(form) }}
+	</div>
+	
+{% endblock %}
